@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
-    #[Route('/')]
+#[Route('/')]
     public function number(): Response
     {
         $finder = new Finder();
