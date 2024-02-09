@@ -1,1 +1,5 @@
-<h1>Your number is {{ number }}</h1>
+<select class="form-control" id="single">
+    {% for fruit in fruits %}
+        <option value="{{fruit.name}}" >{{fruit.name}}</option>
+    {% endfor %}
+</select>
