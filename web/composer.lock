@@ -1470,16 +1470,16 @@
         },
         {
             "name": "nelmio/api-doc-bundle",
-            "version": "v4.19.2",
+            "version": "v4.19.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "5a5049dd00ce69b7b04c1485f3f41ec58ff7ec3b"
+                "reference": "daadb0b567c637d737f58fd25da0b4db2321560d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/5a5049dd00ce69b7b04c1485f3f41ec58ff7ec3b",
-                "reference": "5a5049dd00ce69b7b04c1485f3f41ec58ff7ec3b",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/daadb0b567c637d737f58fd25da0b4db2321560d",
+                "reference": "daadb0b567c637d737f58fd25da0b4db2321560d",
                 "shasum": ""
             },
             "require": {
@@ -1574,9 +1574,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nelmio/NelmioApiDocBundle/issues",
-                "source": "https://github.com/nelmio/NelmioApiDocBundle/tree/v4.19.2"
+                "source": "https://github.com/nelmio/NelmioApiDocBundle/tree/v4.19.3"
             },
-            "time": "2024-01-30T09:05:50+00:00"
+            "time": "2024-02-07T13:21:48+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -6270,16 +6270,16 @@
         },
         {
             "name": "symfony/stimulus-bundle",
-            "version": "v2.14.1",
+            "version": "v2.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stimulus-bundle.git",
-                "reference": "da6b4a4f95a91390d38151ef67c77901a1210646"
+                "reference": "f775f6e811215156bfe41e6be234272d0c27e02b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stimulus-bundle/zipball/da6b4a4f95a91390d38151ef67c77901a1210646",
-                "reference": "da6b4a4f95a91390d38151ef67c77901a1210646",
+                "url": "https://api.github.com/repos/symfony/stimulus-bundle/zipball/f775f6e811215156bfe41e6be234272d0c27e02b",
+                "reference": "f775f6e811215156bfe41e6be234272d0c27e02b",
                 "shasum": ""
             },
             "require": {
@@ -6319,7 +6319,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/stimulus-bundle/tree/v2.14.1"
+                "source": "https://github.com/symfony/stimulus-bundle/tree/v2.14.2"
             },
             "funding": [
                 {
@@ -6335,7 +6335,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-03T01:11:47+00:00"
+            "time": "2024-02-07T20:26:48+00:00"
         },
         {
             "name": "symfony/stopwatch",
@@ -6853,16 +6853,16 @@
         },
         {
             "name": "symfony/ux-turbo",
-            "version": "v2.14.0",
+            "version": "v2.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-turbo.git",
-                "reference": "7806d3960ff40f76094015644742041376218c76"
+                "reference": "7cd466f33950aa82a2b7e1485d62d8da726a0051"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/7806d3960ff40f76094015644742041376218c76",
-                "reference": "7806d3960ff40f76094015644742041376218c76",
+                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/7cd466f33950aa82a2b7e1485d62d8da726a0051",
+                "reference": "7cd466f33950aa82a2b7e1485d62d8da726a0051",
                 "shasum": ""
             },
             "require": {
@@ -6929,7 +6929,7 @@
                 "turbo-stream"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-turbo/tree/v2.14.0"
+                "source": "https://github.com/symfony/ux-turbo/tree/v2.14.2"
             },
             "funding": [
                 {
@@ -6945,7 +6945,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-14T10:21:35+00:00"
+            "time": "2024-02-07T20:26:48+00:00"
         },
         {
             "name": "symfony/validator",
