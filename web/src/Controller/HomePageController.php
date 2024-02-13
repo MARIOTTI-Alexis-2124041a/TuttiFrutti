@@ -1,5 +1,5 @@
 <?php
-// src/Controller/LuckyController.php
+// src/Controller/HomepageController.php
 namespace App\Controller;
 
 use App\Entity\Fruit;
