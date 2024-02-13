@@ -51,20 +51,10 @@ security:
                 default_target_path: app_main
             logout:
                 path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # require ROLE_USER for /user*
+        - { path: '^/user', roles: [ IS_AUTHENTICATED_FULLY, ROLE_USER ] }
 
 when@test:
     security:
