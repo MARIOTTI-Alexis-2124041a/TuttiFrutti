@@ -3,10 +3,15 @@
 
 {% block body %}
     <div {{ stimulus_controller('hello') }}>
-        <select class="form-control" id="single">
+        <select class="form-control" id="selectElement">
             {% for fruit in fruits %}
                 <option value="{{fruit.name}}" >{{fruit.name}}</option>
             {% endfor %}
         </select>
+        <script>
+            new SlimSelect({
+                select: '#selectElement'
+            })
+        </script>
     </div>
 {% endblock %}
