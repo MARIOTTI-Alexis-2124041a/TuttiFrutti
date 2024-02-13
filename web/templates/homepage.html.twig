@@ -1,5 +1,12 @@
-<select class="form-control" id="single">
-    {% for fruit in fruits %}
-        <option value="{{fruit.name}}" >{{fruit.name}}</option>
-    {% endfor %}
-</select>
+{% extends 'base.html.twig' %}
+{% block title %}test!{% endblock %}
+
+{% block body %}
+    <div {{ stimulus_controller('hello') }}>
+        <select class="form-control" id="single">
+            {% for fruit in fruits %}
+                <option value="{{fruit.name}}" >{{fruit.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+{% endblock %}
