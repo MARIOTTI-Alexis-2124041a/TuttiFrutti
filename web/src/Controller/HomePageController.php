@@ -16,7 +16,7 @@ class HomePageController extends AbstractController
 
     }
 
-    #[Route('/')]
+    #[Route('/', name: 'app_main')]
     public function listFruit(): Response
     {
 

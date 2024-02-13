@@ -29,4 +29,11 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    //for the French language, keep the same name to be recognised by the firewall
+    #[Route(path: '/deconnexion', name: 'app_logout')]
+    public function deconnexion(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
 }
