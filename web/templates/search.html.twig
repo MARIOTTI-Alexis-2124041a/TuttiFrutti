@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('styles/search.css') }}">
+    <div class="d-flex flex-column">
+    <h1 class="title">Search</h1>
+    <form action="{{ path('search') }}" method="get" class="input-group mt-2 w-50">
+        <input type="text" name="query" required class="form-control" placeholder="Search for an item...">
+        <button type="submit" class="btn btn-dark ml-3">
+            <i class="fa fa-search"></i>
+        </button>
+    </form>
+    {% if result %}
+    <div class="mt-2">
+        <h2>Résultats</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
+            {% for item in result %}
+                <div class="col">
+                    <div class="card h-100 pointer">
+                        {% if item.thumb %}
+                            <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
+                        {% else %}
+                            <div class="card-img-top"></div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h3 class="card-title">{{ item.title }}</h3>
+                            <h6 class="card-subtitle mb-2 text-body-secondary text-capitalize">{{ item.type }}</h6>
+                            <div class="card-text">
+                                {% if item.country %}
+                                    <p>Pays: {{ item.country }}</p>
+                                {% endif %}
+
+                                {% if item.year %}
+                                    <p>Année de sortie: {{ item.year }}</p>
+                                {% endif %}
+
+                                {% if item.format.length %}
+                                    <p>Format: {{ item.format|join(', ') }}</p>
+                                {% endif %}
+
+                                {% if item.genre %}
+                                    <p>Genre: {{ item.genre|join(', ') }}</p>
+                                {% endif %}
+
+                                {% if item.label %}
+                                    <p>Label: {{ item.label|join(', ') }}</p>
+                                {% endif %}
+                            </div>
+                            <a class="btn btn-outline-primary btn-sm" href="https://www.discogs.com{{ item.uri }}" target="_blank">
+                                <i class="fa fa-external-link-alt mr-2"></i>
+                                En savoir plus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
