@@ -1,1 +1,20 @@
-<h1>Your number is {{ number }}</h1>
+{% extends 'base.html.twig' %}
+{% block title %}test!{% endblock %}
+
+{% block body %}
+    <div {{ stimulus_controller('hello') }}>
+        <select class="form-control" id="selectElement">
+            {% for fruit in fruits %}
+                <option value="{{fruit.name}}" >{{fruit.name}}</option>
+            {% endfor %}
+        </select>
+        <script>
+            new SlimSelect({
+                select: '#selectElement'
+            })
+        </script>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p> Hello {{ app.user.username }} !</p>
+    {% endif %}
+{% endblock %}
