@@ -2,6 +2,9 @@
 {% block title %}test!{% endblock %}
 
 {% block body %}
+    {{ component('LogRegisterOrSeeWhoIsLogged') }}
+
+
     <div {{ stimulus_controller('hello') }}>
         <select class="form-control" id="selectElement">
             {% for fruit in fruits %}
@@ -14,7 +17,4 @@
             })
         </script>
     </div>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <p> Hello {{ app.user.username }} !</p>
-    {% endif %}
 {% endblock %}
