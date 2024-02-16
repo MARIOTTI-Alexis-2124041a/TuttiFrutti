@@ -2,7 +2,7 @@
 {% block title %}test!{% endblock %}
 
 {% block body %}
-    <div {{ stimulus_controller('hello') }}>
+    <div>
         <select class="form-control" id="selectElement">
             {% for fruit in fruits %}
                 <option value="{{fruit.name}}" >{{fruit.name}}</option>
