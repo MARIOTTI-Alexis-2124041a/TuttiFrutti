@@ -8,18 +8,39 @@
             {% endif %}
         {% endfor %}
     </select>
-    <input type="text" class="form-control" id="typeFilter" name="artist" placeholder="Artiste">
+    <select id="multiple-optgroups" multiple>
+        <optgroup label="Artistes">
+            {% if result %}
+                {% for artist in result %}
+                    {% if artist.type=="Artist" %}
+                        <option value="{{artist.title}}">{{artist.title}}</option>
+                        {% else %}
+                            <option value="{{ artist.title }}">{{ artist.title|split(' - ')[0] }}</option>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </optgroup>
+    </select>
     <script>
         new SlimSelect({
             select: '#selectElement'
-        })
+        });
+        new SlimSelect({
+            select: '#multiple-optgroups'
+        });
     </script>
     <button type="submit" class="btn btn-dark ml-3">
         <i class="fa fa-search"></i>
     </button>
 </form>
 <script>
-    document.getElementById('selectElement').addEventListener('change', function() {
-        document.getElementById('searchForm').submit();
-    });
+    const searchInput = document.getElementById('typeFilter');
+
+    // Function to handle input event
+    function handleInput() {
+        document.getElementById('searchForm').submit(); // Submit the form
+    }
+
+    // Add input event listener to the search input field
+    searchInput.addEventListener('input', handleInput);
 </script>
