@@ -1,3 +1,10 @@
-<div class="whoIsLogged">
-    <p>{{ beforeName  }} {{ name }}</p>
-</div>
+<section class="whoIsLogged">
+    <h1>Profile</h1>
+    <div class="profile">
+        <img src={{ asset(this.profilePicturePath) }} alt="The profile picture"/>
+        <div class="whoIsLoggedName">
+            <p>{{ beforeName }} {{ name }}</p>
+        </div>
+        <a class="logout" href="{{ path('app_logout') }}">{{ logoutButtonName }}</a>
+    </div>
+</section>

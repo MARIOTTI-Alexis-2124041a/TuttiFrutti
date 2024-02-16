@@ -9,4 +9,7 @@ class SeeWhoIsLogged
 {
     public String $beforeName = 'Hello ';
     public String $name;
+    public String $logoutButtonName = 'Log out';
+
+    public String $profilePicturePath = 'images/userDefaultProfile.png';
 }

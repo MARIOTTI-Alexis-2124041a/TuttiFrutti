@@ -1,7 +1,7 @@
-<section>
+<article>
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
        <p> {{ component('SeeWhoIsLogged', {beforeName: this.beforeName , name: app.user.username }) }} </p>
     {% else %}
         <p> {{ component('LogRegister', {logButtonName: this.logButtonName , registerButtonName : this.registerButtonName }) }} </p>
     {% endif %}
-</section>
+</article>
