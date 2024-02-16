@@ -3,6 +3,7 @@
     <div class="d-flex flex-column">
     <h1 class="title">Search</h1>
     {% include './form/searchForm.html.twig' with {'form': form} %}
+    {% include './form/filter.html.twig' with {'form': form} %}
     {% if result %}
     <div class="mt-2">
         <h2>Résultats</h2>

@@ -24,9 +24,15 @@ class SearchController extends AbstractController
     public function search(Request $request): Response
     {
         $query = $request->query->get('query');
+        $typeFilter = $request->query->get('artist');
         $result = null;
         if ($query) {
-            $result = $this->discogsService->search($query);
+            $filters = [];
+            if ($typeFilter) {
+                $filters[] = 'artist=' . $typeFilter;
+            }
+            dump($filters, $typeFilter);
+            $result = $this->discogsService->search($query, $filters);
         }
         return $this->render('search.html.twig', [
             'result' => $result,
