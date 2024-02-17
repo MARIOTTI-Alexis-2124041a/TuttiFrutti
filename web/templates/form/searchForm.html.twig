@@ -1,0 +1,24 @@
+<form action="{{ path('search') }}" method="get" class="input-group mt-2 w-50" id="searchForm">
+    <select class="form-control" id="selectElement" name="query">
+        {% for fruit in fruits %}
+            {% if app.request.query.get('query') == fruit.name %}
+                <option value="{{fruit.name}}" selected>{{fruit.name}}</option>
+            {% else %}
+                <option value="{{fruit.name}}">{{fruit.name}}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <script>
+        new SlimSelect({
+            select: '#selectElement'
+        })
+    </script>
+    <button type="submit" class="btn btn-dark ml-3">
+        <i class="fa fa-search"></i>
+    </button>
+</form>
+<script>
+    document.getElementById('selectElement').addEventListener('change', function() {
+        document.getElementById('searchForm').submit();
+    });
+</script>
