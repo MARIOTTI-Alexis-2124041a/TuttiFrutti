@@ -1,0 +1,10 @@
+<nav>
+    <ul>
+        <li><a href="{{ path('app_main') }}">Home</a></li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li><a href="{{ path('app_login') }}">Recherche</a></li>
+            <li><a href="{{ path('app_login') }}">Bibliothèque</a></li>
+        {% endif %}
+    </ul>
+    {{ component('LogRegisterOrSeeWhoIsLogged') }}
+</nav>
