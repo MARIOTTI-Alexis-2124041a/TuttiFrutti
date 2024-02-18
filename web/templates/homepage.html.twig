@@ -4,7 +4,10 @@
 {% block body %}
     {{ component('NavBar') }}
 
-
+    <article class="presentation">
+        <h1>Bienvenu sur Tutti frutti !</h1>
+        <p>Le site qui vous permet de visualiser des musiques sur le theme des fruits.</p>
+    </article>
     <div {{ stimulus_controller('hello') }}>
         <select class="form-control" id="selectElement">
             {% for fruit in fruits %}
