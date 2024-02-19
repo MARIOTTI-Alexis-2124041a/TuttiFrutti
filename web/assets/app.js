@@ -11,4 +11,13 @@ import './styles/app.css';
 import './styles/search.css';
 
 // start the Stimulus application
-import './bootstrap';
+import './bootstrap.js';
+
+// this waits for Turbo Drive to load
+document.addEventListener('turbo:load', function (e) {
+    // this enables bootstrap tooltips globally
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new Tooltip(tooltipTriggerEl)
+    });
+});

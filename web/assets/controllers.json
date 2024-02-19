@@ -17,7 +17,7 @@
                 "fetch": "eager"
             },
             "mercure-turbo-stream": {
-                "enabled": true,
+                "enabled": false,
                 "fetch": "eager"
             }
         }
