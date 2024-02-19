@@ -89,6 +89,7 @@ The composer install command will install all the dependencies needed for the pr
 
 Now you can run this symfony project by using the following command:
 ```bash
+cd ./web
 symfony server:start
 ```
 
