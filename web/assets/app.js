@@ -21,3 +21,5 @@ document.addEventListener('turbo:load', function (e) {
         return new Tooltip(tooltipTriggerEl)
     });
 });
+
+import './search.js';

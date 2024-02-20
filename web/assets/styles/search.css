@@ -11,4 +11,8 @@
     &:hover {
         transform: scale(1.025);
     }
+
+    .card-footer a {
+        width: fit-content!important;
+    }
 }
