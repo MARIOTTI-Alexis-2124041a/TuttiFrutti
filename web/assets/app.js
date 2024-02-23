@@ -13,4 +13,4 @@ import './styles/search.css';
 // start the Stimulus application
 import './bootstrap.js';
 
-// this waits for Turbo Drive to load
+
