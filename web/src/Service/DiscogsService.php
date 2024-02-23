@@ -43,4 +43,14 @@ class DiscogsService
             return [];
         }
     }
+
+    public function getDetails(string $resourceUrl): array
+    {
+        dump($resourceUrl);
+        try {
+            return $this->requestService->request('GET', $resourceUrl);
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
 }

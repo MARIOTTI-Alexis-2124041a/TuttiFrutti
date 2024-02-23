@@ -19,7 +19,6 @@ class SearchController extends AbstractController
     {
     }
 
-
     #[Route('/search', name: 'search')]
     public function search(Request $request): Response
     {
@@ -54,6 +53,10 @@ class SearchController extends AbstractController
             'artists' => $artists ?? [],
             'fruits' => $this->entityManager->getRepository(Fruit::class)->findAll(),
         ]);
+    }
+
+    public function addFavorite(){
+
     }
 
 }
