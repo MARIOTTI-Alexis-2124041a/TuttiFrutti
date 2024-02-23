@@ -13,6 +13,9 @@ import './bootstrap.js';
 import './styles/app.css';
 import './styles/search.css';
 
+// start the Stimulus application
+import './bootstrap';
+
 /**
 // this waits for Turbo Drive to load
 document.addEventListener('turbo:load', function (e) {

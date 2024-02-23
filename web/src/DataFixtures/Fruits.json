@@ -1,8 +1,7 @@
 {
   "Abricot": ["Juin", "Juillet", "Août"],
-  "Amande fraiche": ["Juillet", "Août"],
-  "Amande sèche": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
-  "Baie de goji": ["Août", "Septembre", "Octobre"],
+  "Amande": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+  "Banane": ["Août", "Septembre", "Octobre"],
   "Brugnon": ["Juin", "Juillet", "Août"],
   "Cassis": ["Juin", "Juillet", "Août"],
   "Cerise": ["Mai", "Juin", "Juillet"],
