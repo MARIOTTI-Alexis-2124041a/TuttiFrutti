@@ -1,4 +1,3 @@
-import './bootstrap.js';
 // assets/app.js
 /*
  * Welcome to your app's main JavaScript file!
@@ -7,13 +6,13 @@ import './bootstrap.js';
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-// start the Stimulus application
-
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import './styles/search.css';
 
-/**
+// start the Stimulus application
+import './bootstrap.js';
+
 // this waits for Turbo Drive to load
 document.addEventListener('turbo:load', function (e) {
     // this enables bootstrap tooltips globally
@@ -22,4 +21,5 @@ document.addEventListener('turbo:load', function (e) {
         return new Tooltip(tooltipTriggerEl)
     });
 });
- */
+
+import './search.js';

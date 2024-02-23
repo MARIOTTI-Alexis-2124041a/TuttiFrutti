@@ -9,7 +9,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
             {% for item in result %}
                 <div class="col">
-                    <div class="card h-100 pointer">
+                    <article class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}">
                         {% if item.thumb %}
                             <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
                         {% else %}
@@ -17,8 +17,8 @@
                         {% endif %}
                         <div class="card-body">
                             <h3 class="card-title">{{ item.title }}</h3>
-                            <h6 class="card-subtitle mb-2 text-body-secondary text-capitalize">{{ item.type }}</h6>
-                            <div class="card-text">
+                            <h4 class="card-subtitle mb-2 text-body-secondary text-capitalize h6">{{ item.type }}</h4>
+                            <p class="card-text">
                                 {% if item.country %}
                                     <p>Pays: {{ item.country }}</p>
                                 {% endif %}
@@ -38,13 +38,16 @@
                                 {% if item.label %}
                                     <p>Label: {{ item.label|join(', ') }}</p>
                                 {% endif %}
-                            </div>
-                            <a class="btn btn-outline-primary btn-sm" href="https://www.discogs.com{{ item.uri }}" target="_blank">
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <a class="btn btn-link btn-sm mx-auto d-block w-auto"
+                               href="https://www.discogs.com{{ item.uri }}" target="_blank">
                                 <i class="fa fa-external-link-alt mr-2"></i>
                                 En savoir plus
                             </a>
-                        </div>
-                    </div>
+                        </footer>
+                    </article>
                 </div>
             {% endfor %}
         </div>
