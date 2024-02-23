@@ -14,12 +14,3 @@ import './styles/search.css';
 import './bootstrap.js';
 
 // this waits for Turbo Drive to load
-document.addEventListener('turbo:load', function (e) {
-    // this enables bootstrap tooltips globally
-    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new Tooltip(tooltipTriggerEl)
-    });
-});
-
-import './search.js';

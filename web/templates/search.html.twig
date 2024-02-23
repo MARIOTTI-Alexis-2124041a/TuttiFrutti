@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="d-flex flex-column">
-    <h1 class="title">S</h1>
+    <h1 class="title">Search</h1>
     {% include './form/searchForm.html.twig' with {'form': form} %}
     {% if result %}
     <div class="mt-2">
@@ -15,7 +15,10 @@
                         {% else %}
                             <div class="card-img-top"></div>
                         {% endif %}
-                        <div class="card-body">
+                        <div id="{{ item.title}}_{{item.type}}" class="card-body">
+                            <button id="{{ item.title}}_{{item.type}}_button" class="btn" {{ stimulus_controller('favorite')}} data-id="{{ item.title}}_{{item.type}}" data-action="click->favorite#addToFavorite">
+                                <i class="fa-regular fa-star"></i>
+                            </button>
                             <h3 class="card-title">{{ item.title }}</h3>
                             <h4 class="card-subtitle mb-2 text-body-secondary text-capitalize h6">{{ item.type }}</h4>
                             <p class="card-text">

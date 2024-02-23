@@ -33,4 +33,8 @@ class SearchController extends AbstractController
         ]);
     }
 
+    public function addFavorite(){
+
+    }
+
 }
