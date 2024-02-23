@@ -8,39 +8,55 @@
             {% endif %}
         {% endfor %}
     </select>
-    <select id="multiple-optgroups" multiple>
+    <select class="form-control" id="typeFilter" name="artist" multiple>
         <optgroup label="Artistes">
-            {% if result %}
-                {% for artist in result %}
-                    {% if artist.type=="Artist" %}
-                        <option value="{{artist.title}}">{{artist.title}}</option>
-                        {% else %}
-                            <option value="{{ artist.title }}">{{ artist.title|split(' - ')[0] }}</option>
-                    {% endif %}
+            {% if artists %}
+                {% for artist in artists %}
+                    <option value="{{ artist }}">{{artist}}</option>
                 {% endfor %}
             {% endif %}
         </optgroup>
     </select>
-    <script>
-        new SlimSelect({
-            select: '#selectElement'
-        });
-        new SlimSelect({
-            select: '#multiple-optgroups'
-        });
-    </script>
-    <button type="submit" class="btn btn-dark ml-3">
+    <button type="button" class="btn btn-dark ml-3" id="searchButton">
         <i class="fa fa-search"></i>
     </button>
 </form>
 <script>
-    const searchInput = document.getElementById('typeFilter');
+    new SlimSelect({
+        select: '#selectElement'
+    });
+    new SlimSelect({
+        select: '#typeFilter',
+        settings: {
+            placeholderText: 'Filtrer',
+        }
+    });
 
-    // Function to handle input event
-    function handleInput() {
-        document.getElementById('searchForm').submit(); // Submit the form
+    // Function to handle click event on the search button
+    document.getElementById('searchButton').addEventListener('click', function() {
+        updateUrl(); // Update URL
+    });
+
+    // Event listener to handle change event on the first select element
+    document.getElementById('selectElement').addEventListener('change', function() {
+        updateUrl2(); // Update URL
+    });
+
+    // Function to update the URL with selected artists
+    function updateUrl() {
+        const selectedArtists = Array.from(document.querySelectorAll('#typeFilter option:checked')).map(option => option.value);
+        const queryParams = new URLSearchParams(window.location.search);
+        queryParams.set('artist', selectedArtists.join(','));
+        queryParams.set('query', document.getElementById('selectElement').value); // Set the value of the first select
+        window.history.replaceState({}, '', '{{ path('search') }}?' + queryParams.toString());
+        window.location.reload(); // Reload the page
     }
 
-    // Add input event listener to the search input field
-    searchInput.addEventListener('input', handleInput);
+    function updateUrl2() {
+        const queryParams = new URLSearchParams(window.location.search);
+        queryParams.delete('artist')
+        queryParams.set('query', document.getElementById('selectElement').value); // Set the value of the first select
+        window.history.replaceState({}, '', '{{ path('search') }}?' + queryParams.toString());
+        window.location.reload(); // Reload the page
+    }
 </script>

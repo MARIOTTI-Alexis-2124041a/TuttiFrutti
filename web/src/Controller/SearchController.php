@@ -29,13 +29,34 @@ class SearchController extends AbstractController
         if ($query) {
             $filters = [];
             if ($typeFilter) {
-                $filters[] = 'artist=' . $typeFilter;
+                $typeFilter = explode(",", $typeFilter);
+                foreach ($typeFilter as $filter) {
+                    $filters[] = 'artist=' . $filter;
+                }
             }
-            dump($filters, $typeFilter);
-            $result = $this->discogsService->search($query, $filters);
+            dump($query, $typeFilter, $filters);
+            $result = [];
+            if (empty($filters)) {
+                $result = $this->discogsService->search($query);
+            }
+            foreach ($filters as $filter) {
+                dump($filter);
+                $result = array_merge($result, $this->discogsService->search($query, [$filter]));
+            }
+            $artists = array_unique(array_map(function($result) {
+                if ($result['type'] === 'Label') {
+                    return null;
+                } elseif ($result['type'] != 'Label') {
+                    return explode(' - ', $result['title'])[0];
+                } else {
+                    return null;
+                }
+            }, $result));
+            dump($result, $artists);
         }
         return $this->render('search.html.twig', [
             'result' => $result,
+            'artists' => $artists ?? [],
             'fruits' => $this->entityManager->getRepository(Fruit::class)->findAll(),
         ]);
     }
