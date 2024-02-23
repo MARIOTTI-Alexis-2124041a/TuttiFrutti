@@ -21,7 +21,6 @@ class AppFixtures extends Fixture
         if (file_exists($path)) {
             $jsonString = file_get_contents($path);
             $jsonData = json_decode($jsonString, true);
-            var_dump("test", $jsonData);
             foreach ($jsonData as $fruitName=>$value) {
                 $fruit = new Fruit();
                 $fruit->setName($fruitName);

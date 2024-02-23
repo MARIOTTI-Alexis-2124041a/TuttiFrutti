@@ -20,7 +20,6 @@ class DiscogsService
         if (!empty($filters)) {
             $url .= '&' . implode('&', $filters);
         }
-        dump($url);
         try {
             $results = $this->requestService->request('GET', $url)['results'];
             foreach ($results as &$result) {
