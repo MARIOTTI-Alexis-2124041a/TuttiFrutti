@@ -19,7 +19,6 @@ class SearchController extends AbstractController
     {
     }
 
-
     #[Route('/search', name: 'search')]
     public function search(Request $request): Response
     {
