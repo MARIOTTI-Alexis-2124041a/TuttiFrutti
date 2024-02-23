@@ -38,31 +38,6 @@
             "./migrations/.gitignore"
         ]
     },
-    "friendsofphp/php-cs-fixer": {
-        "version": "3.49",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "3.0",
-            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
-        },
-        "files": [
-            ".php-cs-fixer.dist.php"
-        ]
-    },
-    "nelmio/api-doc-bundle": {
-        "version": "4.19",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "main",
-            "version": "3.0",
-            "ref": "c8e0c38e1a280ab9e37587a8fa32b251d5bc1c94"
-        },
-        "files": [
-            "./config/packages/nelmio_api_doc.yaml",
-            "./config/routes/nelmio_api_doc.yaml"
-        ]
-    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
@@ -75,6 +50,21 @@
             "./.env.test",
             "./phpunit.xml.dist",
             "./tests/bootstrap.php"
+        ]
+    },
+    "symfony/asset-mapper": {
+        "version": "6.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.4",
+            "ref": "4ff49f66191ce9356098e588684c27b935958b33"
+        },
+        "files": [
+            "./assets/app.js",
+            "./assets/styles/app.css",
+            "./config/packages/asset_mapper.yaml",
+            "./importmap.php"
         ]
     },
     "symfony/console": {
@@ -243,7 +233,7 @@
         ]
     },
     "symfony/stimulus-bundle": {
-        "version": "2.14",
+        "version": "2.15",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -251,9 +241,9 @@
             "ref": "6acd9ff4f7fd5626d2962109bd4ebab351d43c43"
         },
         "files": [
-            "./assets/bootstrap.js",
-            "./assets/controllers.json",
-            "./assets/controllers/hello_controller.js"
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js"
         ]
     },
     "symfony/translation": {
@@ -282,20 +272,20 @@
             "./templates/base.html.twig"
         ]
     },
-    "symfony/ux-autocomplete": {
-        "version": "2.14",
+    "symfony/ux-turbo": {
+        "version": "v2.15.0"
+    },
+    "symfony/ux-twig-component": {
+        "version": "2.15",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "2.6",
-            "ref": "07d9602b7231ba355f484305d6cea58310c01741"
+            "version": "2.13",
+            "ref": "67814b5f9794798b885cec9d3f48631424449a01"
         },
         "files": [
-            "config/routes/ux_autocomplete.yaml"
+            "config/packages/twig_component.yaml"
         ]
-    },
-    "symfony/ux-turbo": {
-        "version": "v2.14.0"
     },
     "symfony/validator": {
         "version": "6.4",

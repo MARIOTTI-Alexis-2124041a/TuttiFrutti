@@ -2,19 +2,11 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Fruit;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Finder\Finder;
 
 class AppFixtures extends Fixture
 {
-    private string $projectDir;
-
-    public function __construct(string $projectDir)
-    {
-        $this->projectDir = $projectDir;
-    }
     public function load(ObjectManager $manager): void
     {
         $path = './src/DataFixtures/Fruits.json';

@@ -11,3 +11,70 @@ body {
 .pointer {
     cursor: pointer;
 }
+
+nav {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+}
+
+nav ul li {
+    margin: 1vh;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    /*border: 1px solid #1b1b1b5a;*/
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+nav a:hover {
+    /*color: #007bff;*/
+    background-color: rgba(203, 200, 208, 0.76);
+}
+
+.whoIsLogged {
+    display: flex;
+    height: 10vh;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+}
+
+.profile * {
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.profile img {
+    height: 5vh;
+    width: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: ease-in-out 0.3s;
+}
+
+.whoIsLoggedName p{
+    margin-bottom: 0;
+}
+
+
+.presentation {
+    margin: 5vh 3vw;
+    background-color: rgba(234, 232, 232, 0.79);
+}

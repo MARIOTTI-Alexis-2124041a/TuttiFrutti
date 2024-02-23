@@ -2,19 +2,23 @@
 {% block title %}test!{% endblock %}
 
 {% block body %}
-    <div>
-        <select class="form-control" id="selectElement">
-            {% for fruit in fruits %}
-                <option value="{{fruit.name}}" >{{fruit.name}}</option>
-            {% endfor %}
-        </select>
-        <script>
-            new SlimSelect({
-                select: '#selectElement'
-            })
-        </script>
+    {{ component('NavBar') }}
+
+    <article class="presentation">
+        <h1>Bienvenu sur Tutti frutti !</h1>
+        <p>Le site qui vous permet de visualiser des musiques sur le theme des fruits.</p>
+    </article>
+
+    <div class="container">
+        <h1>Test Turbo</h1>
+
+        <p>Cliquez sur le lien ci-dessous pour charger une nouvelle page sans rechargement complet.</p>
+
+        <turbo-frame id="mainFrame">
+            <a href="{{ path('app_turbo_page') }}">Lien vers une nouvelle page</a>
+            <div id="main"></div>
+        </turbo-frame>
+
+
     </div>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <p> Hello {{ app.user.username }} !</p>
-    {% endif %}
 {% endblock %}
