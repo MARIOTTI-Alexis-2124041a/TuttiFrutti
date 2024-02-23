@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {{ component('NavBar') }}
     <div class="d-flex flex-column">
     <h1 class="title">Search</h1>
     {% include './form/searchForm.html.twig' with {'result': result} %}

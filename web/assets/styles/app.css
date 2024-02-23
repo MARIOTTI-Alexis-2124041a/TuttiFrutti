@@ -13,7 +13,7 @@ body {
 }
 
 nav {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,7 +65,7 @@ nav a:hover {
     height: 5vh;
     width: auto;
     object-fit: cover;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     transition: ease-in-out 0.3s;
 }
 
@@ -76,5 +76,4 @@ nav a:hover {
 
 .presentation {
     margin: 5vh 3vw;
-    background-color: rgba(234, 232, 232, 0.79);
 }
