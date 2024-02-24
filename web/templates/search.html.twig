@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {{ component('NavBar') }}
     <div class="d-flex flex-column">
     <h1 class="title">Search</h1>
     {% include './form/searchForm.html.twig' with {'result': result} %}
@@ -9,7 +10,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
             {% for item in result %}
                 <div class="col">
-                    <article id="{{ item.title}}_{{item.type}}" class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}">
+                    <article id="{{ item.title}}_{{item.type}}" class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}" data-controller="search" data-action="click->search#next">
                         {% if item.thumb %}
                             <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
                         {% else %}

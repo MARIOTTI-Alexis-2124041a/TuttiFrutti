@@ -16,3 +16,43 @@
         width: fit-content!important;
     }
 }
+
+.modal-header {
+    --bs-modal-header-padding: 0;
+
+    img {
+        border-radius: var(--bs-border-radius-lg);
+        max-height: 500px;
+        min-height: 500px;
+        object-fit: cover;
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+    }
+}
+
+.modal-body {
+    .text {
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    aside {
+        min-width: 150px;
+    }
+}
+
+.link {
+    overflow: hidden;
+}

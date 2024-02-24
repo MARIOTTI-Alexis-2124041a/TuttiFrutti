@@ -22,6 +22,7 @@ class FavoriteController extends AbstractController
 
     #[Route('/user/addFavorite', name: 'add_favorite')]
     public function addFavorite(Request $request): JsonResponse
+
     {
         $dataMap = $request->toArray();
 
