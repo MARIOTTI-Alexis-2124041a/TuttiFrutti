@@ -16,8 +16,8 @@
                             <div class="card-img-top"></div>
                         {% endif %}
                         <div class="card-body">
-                            <button id="{{ item.title}}_{{item.type}}_button" class="btn" {{ stimulus_controller('favorite')}} data-id="{{ item.title}}_{{item.type}}" data-action="click->favorite#addToFavorite" data-addFavoriteRoute="{{ path('add_favorite') }}" data-removeFavoriteRoute="{{ path('remove_favorite') }}">
-                                <i class="fa-regular fa-star"></i>
+                            <button id="{{ item.title}}_{{item.type}}_button" class="btn" {{ stimulus_controller('favorite')}} data-id="{{ item.title}}_{{item.type}}" data-action="click->favorite#{{ item.isFavorite ? 'removeFromFavorite' : 'addToFavorite'}}" data-addFavoriteRoute="{{ path('add_favorite') }}" data-removeFavoriteRoute="{{ path('remove_favorite') }}">
+                                <i class="fa-{{ item.isFavorite ? 'solid' : 'regular'}} fa-star"></i>
                             </button>
                             <h3 class="card-title">{{ item.title }}</h3>
                             <h4 class="card-subtitle mb-2 text-body-secondary text-capitalize h6">{{ item.type }}</h4>

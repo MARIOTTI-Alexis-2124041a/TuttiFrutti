@@ -23,7 +23,6 @@ class FavoriteController extends AbstractController
     #[Route('/user/addFavorite', name: 'add_favorite')]
     public function addFavorite(Request $request): JsonResponse
     {
-        $this->logger->info('Add favorite...');
         $dataMap = $request->toArray();
 
         if ($this->favoriteService->addFavorite($dataMap)) {
@@ -42,12 +41,16 @@ class FavoriteController extends AbstractController
     #[Route('/user/removeFavorite', name: 'remove_favorite')]
     public function removeFavorite(Request $request)
     {
-        if($request->request->get('some_var_name')){
-            //make something curious, get some unbelieveable data
-            $arrData = ['output' => 'here the result which will appear in div'];
-            return new JsonResponse($arrData);
-        }
+        $dataMap = $request->toArray();
 
-        return $this->render('app/main/index.html.twig');
+        if ($this->favoriteService->removeFavorite($dataMap)) {
+            return $this->json([
+                'success' => true, // Send status in the response
+            ]);
+        } else {
+            return $this->json([
+                'success' => false, // Send status in the response
+            ]);
+        }
     }
 }

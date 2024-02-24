@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Fruit;
 use App\Service\DiscogsService;
+use App\Service\FavoriteService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,8 @@ class SearchController extends AbstractController
 {
     public function __construct(
         private readonly DiscogsService $discogsService,
-        public EntityManagerInterface $entityManager
+        public EntityManagerInterface $entityManager,
+        private readonly FavoriteService $favoriteService
     )
     {
     }
@@ -47,6 +49,10 @@ class SearchController extends AbstractController
                     return null;
                 }
             }, $result));
+
+            foreach ($result as $key => $value) {
+                $result[$key]['isFavorite'] = $this->favoriteService->checkIfFavorite($value['title'], $value['type']);
+            }
         }
         return $this->render('search.html.twig', [
             'result' => $result,

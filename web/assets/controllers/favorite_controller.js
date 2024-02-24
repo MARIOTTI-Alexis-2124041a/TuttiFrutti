@@ -18,33 +18,7 @@ export default class extends Controller {
         button.setAttribute("data-action", "click->favorite#removeFromFavorite")
 
         const ajaxData = this.parseDom();
-/**
-        $.ajax({
-            type: "POST",
-            url: "{{ path('add_favorite') }}",
-            dataType: "json",
-            data: ajaxData,
-            async: true,
-            success: function (data) {
-                console.log("success");
-                console.log(data);
-            }
-        })
 
-        axios.post(this.data.get('url'), ajaxData)
-            .then(response => {
-                console.log("success");
-                console.log(response.data); // Access response data
-
-                // Update the DOM based on the response
-            })
-            .catch(error => {
-                console.error("Error:", error);
-
-                // Handle errors appropriately
-            });
-
-    */
     // Fetch the controller action URL
         const url = this.element.dataset.addfavoriteroute;
 
@@ -85,6 +59,34 @@ export default class extends Controller {
         button.setAttribute("data-action", "click->favorite#addToFavorite")
 
         const url = this.element.dataset.removefavoriteroute;
+        const ajaxData = this.parseDom();
+
+        fetch(url, {
+            method: 'POST', // Use POST for adding data
+            headers: {
+                'Content-Type': 'application/json', // Set content type for JSON data
+            },
+            body: JSON.stringify(ajaxData), // Send data as JSON
+        })
+            .then(response => {
+                // Check for successful response
+                if (!response.ok) {
+                    console.error('Error:', response.status);
+                    return; // Handle errors appropriately
+                }
+
+                // Process the JSON response
+                return response.json();
+            })
+            .then(data => {
+                console.log("success");
+                console.log(data);
+                // Update the DOM based on the response (e.g., using Turbo Streams)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors gracefully
+            });
     }
 
     parseDom() {
