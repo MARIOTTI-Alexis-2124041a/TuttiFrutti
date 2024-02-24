@@ -1,4 +1,6 @@
-import { Controller } from '@hotwired/stimulus';
+import {Controller} from '@hotwired/stimulus';
+
+import axios from 'https://cdn.jsdelivr.net/npm/axios@1.3.5/+esm';
 
 export default class extends Controller {
     connect() {
@@ -8,9 +10,6 @@ export default class extends Controller {
 
     // Define other event listener methods like click, submit, etc.
     addToFavorite() {
-        console.log("call");
-        console.log(this.element.dataset.id);
-        console.log(this.element.id);
         let button = document.getElementById(this.element.dataset.id + "_button");
         let starIcon  = button.getElementsByTagName("i")[0]
         starIcon.classList.add("fa-solid");
@@ -18,7 +17,37 @@ export default class extends Controller {
 
         button.setAttribute("data-action", "click->favorite#removeFromFavorite")
 
+        const ajaxData = this.parseDom();
 
+    // Fetch the controller action URL
+        const url = this.element.dataset.addfavoriteroute;
+
+        fetch(url, {
+            method: 'POST', // Use POST for adding data
+            headers: {
+                'Content-Type': 'application/json', // Set content type for JSON data
+            },
+            body: JSON.stringify(ajaxData), // Send data as JSON
+        })
+            .then(response => {
+                // Check for successful response
+                if (!response.ok) {
+                    console.error('Error:', response.status);
+                    return; // Handle errors appropriately
+                }
+
+                // Process the JSON response
+                return response.json();
+            })
+            .then(data => {
+                console.log("success");
+                console.log(data);
+                // Update the DOM based on the response (e.g., using Turbo Streams)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors gracefully
+            });
     }
 
     removeFromFavorite() {
@@ -28,5 +57,61 @@ export default class extends Controller {
         starIcon.classList.remove("fa-solid");
 
         button.setAttribute("data-action", "click->favorite#addToFavorite")
+
+        const url = this.element.dataset.removefavoriteroute;
+        const ajaxData = this.parseDom();
+
+        fetch(url, {
+            method: 'POST', // Use POST for adding data
+            headers: {
+                'Content-Type': 'application/json', // Set content type for JSON data
+            },
+            body: JSON.stringify(ajaxData), // Send data as JSON
+        })
+            .then(response => {
+                // Check for successful response
+                if (!response.ok) {
+                    console.error('Error:', response.status);
+                    return; // Handle errors appropriately
+                }
+
+                // Process the JSON response
+                return response.json();
+            })
+            .then(data => {
+                console.log("success");
+                console.log(data);
+                // Update the DOM based on the response (e.g., using Turbo Streams)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors gracefully
+            });
+    }
+
+    parseDom() {
+        let article = document.getElementById(this.element.dataset.id);
+        let imageUrl = article.getElementsByTagName("img")?.[0]?.src;
+        let name = article.getElementsByTagName("h3")?.[0]?.innerText;
+        let type = article.getElementsByTagName("h4")?.[0]?.innerText;
+        let country = article.getElementsByClassName("country")?.[0]?.innerText;
+        let year = article.getElementsByClassName("year")?.[0]?.innerText;
+        let format = article.getElementsByClassName("format")?.[0]?.innerText;
+        let genre = article.getElementsByClassName("genre")?.[0]?.innerText;
+        let label = article.getElementsByClassName("label")?.[0]?.innerText;
+        let url = article.getElementsByTagName("a")?.[0]?.href;
+
+        return {
+            imageUrl: imageUrl,
+            name: name,
+            type: type,
+            country: country,
+            year: year,
+            format: format,
+            genre: genre,
+            label: label,
+            url: url
+        };
+
     }
 }
