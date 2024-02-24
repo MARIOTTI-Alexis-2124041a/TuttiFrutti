@@ -24,22 +24,33 @@ class FavoriteService
 
     public function addFavorite(array $data) : bool{
         // Add favorite
-        $album = new Album();
-        $album->setName($data['name']??'');
-        $album->setType($data['type']??'');
-        $album->setCountry($data['country']??'');
-        $album->setYear($data['year']??'');
-        $album->setGenre($data['genre']??'');
-        $album->setFormat($data['format']??'');
-        $album->setCover($data['imageUrl']??'');
-        $album->setUrl($data['url']??'');
-        $album->setLabel($data['label']??'');
+        $albumRepo = $this->entityManager->getRepository(Album::class);
+        $albums = $albumRepo->findBy(['name' => $data['name'], 'type' => $data['type']]);
+        if (empty($albums)) {
+            $album = new Album();
+            $album->setName($data['name']??'');
+            $album->setType($data['type']??'');
+            $album->setCountry($data['country']??'');
+            $album->setYear($data['year']??'');
+            $album->setGenre($data['genre']??'');
+            $album->setFormat($data['format']??'');
+            $album->setCover($data['imageUrl']??'');
+            $album->setUrl($data['url']??'');
+            $album->setLabel($data['label']??'');
+        }
+        else{
+            $album = $albums[0];
+        }
+
 
         $user = $this->getUser();
         if(!empty($user)){
             $album->addUser($user);
 
+            $user->addAlbum($album);
+
             $this->entityManager->persist($album);
+            $this->entityManager->persist($user);
             $this->entityManager->flush();
 
             return true;
@@ -53,15 +64,22 @@ class FavoriteService
         $user = $this->getUser();
         if(!empty($user)){
             $albumRepo = $this->entityManager->getRepository(Album::class);
-            $album = $albumRepo->findBy(['name' => $data['name'], 'type' => $data['type']])[0];
-            if(!empty($album)){
-                $user->removeAlbum($album);
-                $album->removeUser($user);
+            $album = $albumRepo->findBy(['name' => $data['name'], 'type' => $data['type']]);
+            if(!empty($album)) {
+                $toReturn = false;
+                foreach ($album as $a) {
+                    if ($user->getAlbums()->contains($a)) {
+                        $user->removeAlbum($a);
+                        $a->removeUser($user);
+                        $this->entityManager->persist($a);
+
+                        $toReturn = true;
+                    }
+                }
                 $this->entityManager->persist($user);
-                $this->entityManager->persist($album);
                 $this->entityManager->flush();
 
-                return true;
+                return $toReturn;
             }
         }
 
@@ -88,8 +106,10 @@ class FavoriteService
         if(!empty($user)){
             $albumRepo = $this->entityManager->getRepository(Album::class);
             $album = $albumRepo->findBy(['name' => $name, 'type' => $type]);
-            if(!empty($album)){
-                return true;
+            foreach ($album as $a){
+                if($user->getAlbums()->contains($a)){
+                    return true;
+                }
             }
         }
 

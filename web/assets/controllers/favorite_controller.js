@@ -1,7 +1,5 @@
 import {Controller} from '@hotwired/stimulus';
 
-import axios from 'https://cdn.jsdelivr.net/npm/axios@1.3.5/+esm';
-
 export default class extends Controller {
     connect() {
         // This function is called when the controller is connected to the DOM
