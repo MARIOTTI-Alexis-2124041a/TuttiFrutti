@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Fruit;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
