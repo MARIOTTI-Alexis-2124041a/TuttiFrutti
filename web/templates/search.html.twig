@@ -9,39 +9,39 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
             {% for item in result %}
                 <div class="col">
-                    <article class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}">
+                    <article id="{{ item.title}}_{{item.type}}" class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}">
                         {% if item.thumb %}
                             <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
                         {% else %}
                             <div class="card-img-top"></div>
                         {% endif %}
-                        <div id="{{ item.title}}_{{item.type}}" class="card-body">
-                            <button id="{{ item.title}}_{{item.type}}_button" class="btn" {{ stimulus_controller('favorite')}} data-id="{{ item.title}}_{{item.type}}" data-action="click->favorite#addToFavorite">
+                        <div class="card-body">
+                            <button id="{{ item.title}}_{{item.type}}_button" class="btn" {{ stimulus_controller('favorite')}} data-id="{{ item.title}}_{{item.type}}" data-action="click->favorite#addToFavorite" data-addFavoriteRoute="{{ path('add_favorite') }}" data-removeFavoriteRoute="{{ path('remove_favorite') }}">
                                 <i class="fa-regular fa-star"></i>
                             </button>
                             <h3 class="card-title">{{ item.title }}</h3>
                             <h4 class="card-subtitle mb-2 text-body-secondary text-capitalize h6">{{ item.type }}</h4>
-                            <p class="card-text">
+                            <section class="card-text">
                                 {% if item.country %}
-                                    <p>Pays: {{ item.country }}</p>
+                                    <p>Pays: <span class="country">{{ item.country }}</span></p>
                                 {% endif %}
 
                                 {% if item.year %}
-                                    <p>Année de sortie: {{ item.year }}</p>
+                                    <p>Année de sortie: <span class="year">{{ item.year }}</span></p>
                                 {% endif %}
 
                                 {% if item.format.length %}
-                                    <p>Format: {{ item.format|join(', ') }}</p>
+                                    <p>Format: <span class="length">{{ item.format|join(', ') }}</span></p>
                                 {% endif %}
 
                                 {% if item.genre %}
-                                    <p>Genre: {{ item.genre|join(', ') }}</p>
+                                    <p>Genre: <span class="genre">{{ item.genre|join(', ') }}</span></p>
                                 {% endif %}
 
                                 {% if item.label %}
-                                    <p>Label: {{ item.label|join(', ') }}</p>
+                                    <p>Label: <span class="label">{{ item.label|join(', ') }}</span></p>
                                 {% endif %}
-                            </p>
+                            </section>
                         </div>
                         <footer class="card-footer">
                             <a class="btn btn-link btn-sm mx-auto d-block w-auto"
