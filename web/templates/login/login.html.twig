@@ -3,8 +3,10 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <turbo-frame>
+    {{ component('NavBar') }}
+
     <form method="post">
+        <turbo-frame id="login">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -35,10 +37,9 @@
                 </label>
             </div>
         #}
-
+        </turbo-frame>
         <button class="btn btn-lg btn-primary" type="submit">
             Sign in
         </button>
     </form>
-    </turbo-frame>
 {% endblock %}
