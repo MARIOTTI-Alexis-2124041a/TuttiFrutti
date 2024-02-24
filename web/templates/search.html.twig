@@ -10,7 +10,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
             {% for item in result %}
                 <div class="col">
-                    <article class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}">
+                    <article class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}" data-controller="search" data-action="click->search#next">
                         {% if item.thumb %}
                             <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
                         {% else %}
@@ -24,24 +24,20 @@
                             <h4 class="card-subtitle mb-2 text-body-secondary text-capitalize h6">{{ item.type }}</h4>
                             <p class="card-text">
                                 {% if item.country %}
-                                    <p>Pays: {{ item.country }}</p>
-                                {% endif %}
+                            <p>Pays: {{ item.country }}</p>
+                            {% endif %}
 
-                                {% if item.year %}
-                                    <p>Année de sortie: {{ item.year }}</p>
-                                {% endif %}
+                            {% if item.year %}
+                                <p>Année de sortie: {{ item.year }}</p>
+                            {% endif %}
 
-                                {% if item.format.length %}
-                                    <p>Format: {{ item.format|join(', ') }}</p>
-                                {% endif %}
+                            {% if item.format.length %}
+                                <p>Format: {{ item.format|join(', ') }}</p>
+                            {% endif %}
 
-                                {% if item.genre %}
-                                    <p>Genre: {{ item.genre|join(', ') }}</p>
-                                {% endif %}
-
-                                {% if item.label %}
-                                    <p>Label: {{ item.label|join(', ') }}</p>
-                                {% endif %}
+                            {% if item.genre %}
+                                <p>Genre: {{ item.genre|join(', ') }}</p>
+                            {% endif %}
                             </p>
                         </div>
                         <footer class="card-footer">
