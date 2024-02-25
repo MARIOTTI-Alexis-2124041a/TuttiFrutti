@@ -1,34 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Créer un compte - TuttiFrutti{% endblock %}
 
 {% block body %}
     {{ component('NavBar') }}
 
-        <h1>Register</h1>
-    {% if isJustRegistered %}
-        <turbo-frame id="register">
-            <p>
-                Your account has been created successfully. You can now log in.
-            </p>
-        </turbo-frame>
-    {% else %}
-        <turbo-frame id="register">
-            {{ form_errors(registrationForm) }}
+    <main class="p-5">
+        <h1>Créer un compte</h1>
+        {% if isJustRegistered %}
+            <turbo-frame id="register">
+                <p>
+                    Votre compte a bien été créé. Vous pouvez maintenant vous connecter.
+                </p>
+            </turbo-frame>
+        {% else %}
+            <turbo-frame id="register">
+                {{ form_errors(registrationForm) }}
 
-            {{ form_start(registrationForm) }}
+                {{ form_start(registrationForm) }}
 
-            {{ form_row(registrationForm.username) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
-            {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+                {{ form_row(registrationForm.agreeTerms) }}
 
 
-            <button type="submit" class="btn">Register</button>
-            {{ form_end(registrationForm) }}
-        </turbo-frame>
-    {% endif %}
+                <button type="submit" class="btn">Register</button>
+                {{ form_end(registrationForm) }}
+            </turbo-frame>
+        {% endif %}
+
+    </main>
 
 {% endblock %}

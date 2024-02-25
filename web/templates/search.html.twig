@@ -1,60 +1,65 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ component('NavBar') }}
-    <div class="d-flex flex-column">
-    <h1 class="title">Search</h1>
-    {% include './form/searchForm.html.twig' with {'result': result} %}
-    {% if result %}
-    <div class="mt-2">
-        <h2>Résultats</h2>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
-            {% for item in result %}
-                <div class="col">
-                    <article id="{{ item.title}}_{{item.type}}" class="card h-100 pointer card-result">
-                        {% if item.thumb %}
-                            <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
-                        {% else %}
-                            <div class="card-img-top"></div>
-                        {% endif %}
-                        <button id="{{ item.title}}_{{item.type}}_button" class="btn" {{ stimulus_controller('favorite')}} data-id="{{ item.title}}_{{item.type}}" data-action="click->favorite#{{ item.isFavorite ? 'removeFromFavorite' : 'addToFavorite'}}" data-addFavoriteRoute="{{ path('add_favorite') }}" data-removeFavoriteRoute="{{ path('remove_favorite') }}">
-                            <i class="fa-{{ item.isFavorite ? 'solid' : 'regular'}} fa-star"></i>
-                        </button>
-                        <div class="card-body" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}">
-                            <h3 class="card-title">{{ item.title }}</h3>
-                            <h4 class="card-subtitle mb-2 text-body-secondary text-capitalize h6">{{ item.type }}</h4>
-                            <section class="card-text">
-                                {% if item.country %}
-                                    <p>Pays: <span class="country">{{ item.country }}</span></p>
-                                {% endif %}
+    <div class="d-flex flex-column p-5">
+        <h1 class="title">Search</h1>
+        {% include './form/searchForm.html.twig' with {'result': result} %}
+        {% if result %}
+        <div class="mt-2">
+            <h2>Résultats</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
+                {% for item in result %}
+                    <div class="col">
+                        <article id="{{ item.title }}_{{ item.type }}" class="card h-100 pointer card-result"
+                                 data-resource_url="{{ item.resource_url }}">
+                            {% if item.thumb %}
+                                <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
+                            {% else %}
+                                <div class="card-img-top"></div>
+                            {% endif %}
+                            <div class="card-body" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}">
+                                <h3 class="card-title">{{ item.title }}</h3>
+                                <div class="d-flex align-items-center mb-2">
+                                    <h4 class="card-subtitle text-body-secondary text-capitalize h6 my-auto">{{ item.type }}</h4>
+                                    <button id="{{ item.title }}_{{ item.type }}_button"
+                                            class="btn favorite-btn ms-2" {{ stimulus_controller('favorite') }}
+                                            data-id="{{ item.title }}_{{ item.type }}"
+                                            data-action="click->favorite#{{ item.isFavorite ? 'removeFromFavorite' : 'addToFavorite' }}"
+                                            data-addFavoriteRoute="{{ path('add_favorite') }}"
+                                            data-removeFavoriteRoute="{{ path('remove_favorite') }}">
+                                        <i class="fa-{{ item.isFavorite ? 'solid' : 'regular' }} fa-star"></i>
+                                    </button>
+                                </div>
+                                <section class="card-text">
+                                    {% if item.country %}
+                                        <p>Pays: <span class="country">{{ item.country }}</span></p>
+                                    {% endif %}
 
-                                {% if item.year %}
-                                    <p>Année de sortie: <span class="year">{{ item.year }}</span></p>
-                                {% endif %}
+                                    {% if item.year %}
+                                        <p>Année de sortie: <span class="year">{{ item.year }}</span></p>
+                                    {% endif %}
 
-                                {% if item.format.length %}
-                                    <p>Format: <span class="length">{{ item.format|join(', ') }}</span></p>
-                                {% endif %}
+                                    {% if item.format.length %}
+                                        <p>Format: <span class="length">{{ item.format|join(', ') }}</span></p>
+                                    {% endif %}
 
-                                {% if item.genre %}
-                                    <p>Genre: <span class="genre">{{ item.genre|join(', ') }}</span></p>
-                                {% endif %}
-
-                                {% if item.label %}
-                                    <p>Label: <span class="label">{{ item.label|join(', ') }}</span></p>
-                                {% endif %}
-                            </section>
-                        </div>
-                        <footer class="card-footer">
-                            <a class="btn btn-link btn-sm mx-auto d-block w-auto"
-                               href="https://www.discogs.com{{ item.uri }}" target="_blank">
-                                <i class="fa fa-external-link-alt mr-2"></i>
-                                En savoir plus
-                            </a>
-                        </footer>
-                    </article>
-                </div>
-            {% endfor %}
+                                    {% if item.genre %}
+                                        <p>Genre: <span class="genre">{{ item.genre|join(', ') }}</span></p>
+                                    {% endif %}
+                                </section>
+                            </div>
+                            <footer class="card-footer">
+                                <a class="btn btn-link btn-sm mx-auto d-block w-auto"
+                                   href="https://www.discogs.com{{ item.uri }}" target="_blank">
+                                    <i class="fa fa-external-link-alt mr-2"></i>
+                                    En savoir plus
+                                </a>
+                            </footer>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 {% endblock %}

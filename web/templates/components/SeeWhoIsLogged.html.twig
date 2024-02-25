@@ -1,10 +1,6 @@
-<section class="whoIsLogged">
-    <h1>Profile</h1>
-    <div class="profile">
-        <img src={{ asset(this.profilePicturePath) }} alt="The profile picture"/>
-        <div class="whoIsLoggedName">
-            <p>{{ beforeName }} {{ name }}</p>
-        </div>
-        <a class="logout" href="{{ path('app_logout') }}">{{ logoutButtonName }}</a>
-    </div>
-</section>
+<li class="nav-item ms-auto">
+    <img src="{{ asset(this.profilePicturePath) }}" alt="Profile picture" class="navbar-img" title="Bonjour {{ name }}"/>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('app_logout') }}" title="{{ logoutButtonName }}"><i class="fa fa-door-open"></i></a>
+</li>
