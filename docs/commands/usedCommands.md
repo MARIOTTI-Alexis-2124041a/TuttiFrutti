@@ -63,8 +63,9 @@ So you can reuse an old migration to revert the database to this state.
 
 To populate the database we use fixtures. We used the following commands : 
 
-//TODO : add the command to create the fixtures
-ALESSIO STP
+```bash
+php bin/console doctrine:fixtures:load
+```
 
 ## composer
 
