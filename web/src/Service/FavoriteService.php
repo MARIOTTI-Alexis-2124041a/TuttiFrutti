@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Album;
+use App\Entity\Favorite;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,32 +24,32 @@ class FavoriteService
 
     public function addFavorite(array $data) : bool{
         // Add favorite
-        $albumRepo = $this->entityManager->getRepository(Album::class);
-        $albums = $albumRepo->findBy(['name' => $data['name'], 'type' => $data['type']]);
-        if (empty($albums)) {
-            $album = new Album();
-            $album->setName($data['name']??'');
-            $album->setType($data['type']??'');
-            $album->setCountry($data['country']??'');
-            $album->setYear($data['year']??'');
-            $album->setGenre($data['genre']??'');
-            $album->setFormat($data['format']??'');
-            $album->setCover($data['imageUrl']??'');
-            $album->setUrl($data['url']??'');
-            $album->setLabel($data['label']??'');
+        $favoriteRepo = $this->entityManager->getRepository(Favorite::class);
+        $favorites = $favoriteRepo->findBy(['name' => $data['name'], 'type' => $data['type']]);
+        if (empty($favorites)) {
+            $favorite = new Favorite();
+            $favorite->setName($data['name']??'');
+            $favorite->setType($data['type']??'');
+            $favorite->setCountry($data['country']??'');
+            $favorite->setYear($data['year']??'');
+            $favorite->setGenre($data['genre']??'');
+            $favorite->setFormat($data['format']??'');
+            $favorite->setCover($data['imageUrl']??'');
+            $favorite->setUrl($data['url']??'');
+            $favorite->setLabel($data['label']??'');
         }
         else{
-            $album = $albums[0];
+            $favorite = $favorites[0];
         }
 
 
         $user = $this->getUser();
         if(!empty($user)){
-            $album->addUser($user);
+            $favorite->addUser($user);
 
-            $user->addAlbum($album);
+            $user->addfavorite($favorite);
 
-            $this->entityManager->persist($album);
+            $this->entityManager->persist($favorite);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
@@ -63,13 +63,13 @@ class FavoriteService
         // Remove favorite
         $user = $this->getUser();
         if(!empty($user)){
-            $albumRepo = $this->entityManager->getRepository(Album::class);
-            $album = $albumRepo->findBy(['name' => $data['name'], 'type' => $data['type']]);
-            if(!empty($album)) {
+            $favoriteRepo = $this->entityManager->getRepository(Favorite::class);
+            $favorite = $favoriteRepo->findBy(['name' => $data['name'], 'type' => $data['type']]);
+            if(!empty($favorite)) {
                 $toReturn = false;
-                foreach ($album as $a) {
-                    if ($user->getAlbums()->contains($a)) {
-                        $user->removeAlbum($a);
+                foreach ($favorite as $a) {
+                    if ($user->getfavorites()->contains($a)) {
+                        $user->removefavorite($a);
                         $a->removeUser($user);
                         $this->entityManager->persist($a);
 
@@ -104,10 +104,10 @@ class FavoriteService
         // Check if favorite
         $user = $this->getUser();
         if(!empty($user)){
-            $albumRepo = $this->entityManager->getRepository(Album::class);
-            $album = $albumRepo->findBy(['name' => $name, 'type' => $type]);
-            foreach ($album as $a){
-                if($user->getAlbums()->contains($a)){
+            $favoriteRepo = $this->entityManager->getRepository(Favorite::class);
+            $favorite = $favoriteRepo->findBy(['name' => $name, 'type' => $type]);
+            foreach ($favorite as $a){
+                if($user->getfavorites()->contains($a)){
                     return true;
                 }
             }

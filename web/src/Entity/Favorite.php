@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\AlbumRepository;
+use App\Repository\FavoriteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AlbumRepository::class)]
-class Album
+#[ORM\Entity(repositoryClass: FavoriteRepository::class)]
+class Favorite
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -40,7 +40,7 @@ class Album
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $url = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'albums')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
     private ?Collection $users;
 
     #[ORM\Column(length: 512, nullable: true)]

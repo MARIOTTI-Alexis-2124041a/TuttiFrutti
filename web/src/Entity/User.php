@@ -35,12 +35,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $username = null;
 
-    #[ORM\ManyToMany(targetEntity: Album::class, inversedBy: 'users')]
-    private ?Collection $albums;
+    #[ORM\ManyToMany(targetEntity: Favorite::class, inversedBy: 'users')]
+    private ?Collection $favorites;
 
     public function __construct()
     {
-        $this->albums = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,18 +125,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAlbums(): Collection
+    public function getFavorites(): Collection
     {
-        return $this->albums;
+        return $this->favorites;
     }
 
-    public function addAlbum(Album $album): void
+    public function addFavorite(Favorite $favorite): void
     {
-        $this->albums->add($album);
+        $this->favorites->add($favorite);
     }
 
-    public function removeAlbum(Album $album): void
+    public function removeFavorite(Favorite $favorite): void
     {
-        $this->albums->removeElement($album);
+        $this->favorites->removeElement($favorite);
     }
 }
