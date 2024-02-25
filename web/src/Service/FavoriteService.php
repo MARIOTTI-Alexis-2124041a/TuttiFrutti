@@ -121,7 +121,7 @@ class FavoriteService
         // Get favorites
         $user = $this->getUser();
         if (!empty($user)) {
-            return $user->getAlbums()->toArray();
+            return $user->getFavorites()->toArray();
         }
 
         return [];
