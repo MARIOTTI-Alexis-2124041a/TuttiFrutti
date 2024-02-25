@@ -10,9 +10,9 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
                 {% for item in result %}
                     <section class="col">
-                        <article id="{{ item.title }}_{{ item.type }}" class="card h-100 pointer card-result">
+                        <article id="{{ item.title }}_{{ item.type }}" class="card h-100 pointer card-result" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}">
                             {% if item.thumb %}
-                                <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}">
+                                <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
                             {% else %}
                                 <div class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}"></div>
                             {% endif %}
