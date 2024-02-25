@@ -116,4 +116,15 @@ class FavoriteService
         return false;
     }
 
+    public function getFavorites(): array
+    {
+        // Get favorites
+        $user = $this->getUser();
+        if (!empty($user)) {
+            return $user->getAlbums()->toArray();
+        }
+
+        return [];
+    }
+
 }

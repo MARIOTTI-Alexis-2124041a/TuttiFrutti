@@ -1,10 +1,23 @@
-<nav>
-    <ul>
-        <li><a href="{{ path('app_main') }}">Home</a></li>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li><a href="{{ path('search') }}">Recherche</a></li>
-            <li><a href="{{ path('app_login') }}">Bibliothèque</a></li>
-        {% endif %}
-    </ul>
-    {{ component('LogRegisterOrSeeWhoIsLogged') }}
+<nav class="navbar navbar-expand-lg container-fluid px-5">
+    <a class="navbar-brand" href="{{ path('app_main') }}">Tutti Frutti</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav w-100">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_main') }}">Accueil</a>
+            </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('search') }}">Recherche</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Bibliothèque</a>
+                </li>
+            {% endif %}
+            {{ component('LogRegisterOrSeeWhoIsLogged') }}
+        </ul>
+    </div>
 </nav>
