@@ -15,11 +15,11 @@
             {% if results %}
                 {% for result in results %}
                     <div class="col">
-                        <article id="{{ result.name }}_{{ result.type }}" class="card h-100 pointer card-result" data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}">
+                        <article id="{{ result.name }}_{{ result.type }}" class="card h-100 pointer card-result">
                             {% if result.cover %}
                                 <img src="{{ result.cover }}" alt="{{ result.name }}" class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}">
                             {% else %}
-                                <div class="card-img-top"></div>
+                                <div class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}"></div>
                             {% endif %}
                             <div class="card-body">
                                 <h3 class="card-title">{{ result.name }}</h3>
