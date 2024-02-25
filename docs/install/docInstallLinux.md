@@ -81,6 +81,8 @@ Then you can move to the project's directory and install the dependencies by run
 ```bash
 cd TuttiFrutti
 composer install
+npm install
+npm run dev
 ```
 
 The composer install command will install all the dependencies needed for the project to run correctly.
