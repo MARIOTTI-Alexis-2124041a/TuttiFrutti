@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FavoriteLibraryController!{% endblock %}
+
+{% block body %}
+    {{ component('NavBar') }}
+<main class="p-5">
+    <section id="description">
+        <h1>Bienvenue dans votre bibliothèque {{ app.user.username }} !</h1>
+        <p>Vous pouvez consulter vos albums, artistes labels, etc... favoris.</p>
+    </section>
+    <section id="favorite-library">
+        <h2>Vos favoris</h2>
+        <div class="favorite-library row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
+            {% if results %}
+                {% for result in results %}
+                    <div class="col">
+                        <article id="{{ result.name }}_{{ result.type }}" class="card h-100 pointer card-result">
+                            {% if result.cover %}
+                                <img src="{{ result.cover }}" alt="{{ result.name }}" class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}">
+                            {% else %}
+                                <div class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}"></div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h3 class="card-title">{{ result.name }}</h3>
+                                <div class="d-flex align-results-center mb-2">
+                                    <h4 class="card-subtitle text-body-secondary text-capitalize h6 my-auto">{{ result.type }}</h4>
+                                    <button id="{{ result.name }}_{{ result.type }}_button"
+                                            class="btn favorite-btn ms-2" {{ stimulus_controller('favorite') }}
+                                            data-id="{{ result.name }}_{{ result.type }}"
+                                            data-action="click->favorite#{{ result.isFavorite ? 'removeFromFavorite' : 'addToFavorite' }}"
+                                            data-addFavoriteRoute="{{ path('add_favorite') }}"
+                                            data-removeFavoriteRoute="{{ path('remove_favorite') }}">
+                                        <i class="fa-{{ result.isFavorite ? 'solid' : 'regular' }} fa-star"></i>
+                                    </button>
+                                </div>
+                                <section class="card-text">
+                                    {% if result.country %}
+                                        <p>Pays: <span class="country">{{ result.country }}</span></p>
+                                    {% endif %}
+
+                                    {% if result.year %}
+                                        <p>Année de sortie: <span class="year">{{ result.year }}</span></p>
+                                    {% endif %}
+
+                                    {% if result.format.length %}
+                                        <p>Format: <span class="length">{{ result.format}}</span></p>
+                                    {% endif %}
+
+                                    {% if result.genre %}
+                                        <p>Genre: <span class="genre">{{ result.genre }}</span></p>
+                                    {% endif %}
+
+                                    {% if result.label %}
+                                        <p>Label: <span class="label">{{ result.label }}</span></p>
+                                    {% endif %}
+                                </section>
+                            </div>
+                            <footer class="card-footer">
+                                <a class="btn btn-link btn-sm mx-auto d-block w-auto"
+                                   href="https://www.discogs.com{{ result.uri }}" target="_blank">
+                                    <i class="fa fa-external-link-alt mr-2"></i>
+                                    En savoir plus
+                                </a>
+                            </footer>
+                        </article>
+                    </div>
+
+                {% endfor %}
+            {% else %}
+                <p>Vous n'avez pas encore de favoris.</p>
+            {% endif %}
+        </div>
+    </section>
+
+
+</main>
+
+{% endblock %}
+

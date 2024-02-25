@@ -2,22 +2,21 @@
 {% block body %}
     {{ component('NavBar') }}
     <div class="d-flex flex-column p-5">
-        <h1 class="title">Search</h1>
+        <h1 class="title">Rechercher dans discogs</h1>
         {% include './form/searchForm.html.twig' with {'result': result} %}
         {% if result %}
         <div class="mt-2">
             <h2>Résultats</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
                 {% for item in result %}
-                    <div class="col">
-                        <article id="{{ item.title }}_{{ item.type }}" class="card h-100 pointer card-result"
-                                 data-resource_url="{{ item.resource_url }}">
+                    <section class="col">
+                        <article id="{{ item.title }}_{{ item.type }}" class="card h-100 pointer card-result">
                             {% if item.thumb %}
-                                <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
+                                <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}">
                             {% else %}
-                                <div class="card-img-top"></div>
+                                <div class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}"></div>
                             {% endif %}
-                            <div class="card-body" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}">
+                            <div class="card-body">
                                 <h3 class="card-title">{{ item.title }}</h3>
                                 <div class="d-flex align-items-center mb-2">
                                     <h4 class="card-subtitle text-body-secondary text-capitalize h6 my-auto">{{ item.type }}</h4>
@@ -56,7 +55,7 @@
                                 </a>
                             </footer>
                         </article>
-                    </div>
+                    </section>
                 {% endfor %}
             </div>
             {% endif %}

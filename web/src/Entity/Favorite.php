@@ -46,6 +46,9 @@ class Favorite
     #[ORM\Column(length: 512, nullable: true)]
     private ?string $cover;
 
+    #[ORM\Column(length: 512, nullable: true)]
+    private ?string $ressourceUrl;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -167,6 +170,33 @@ class Favorite
     public function setType(?string $type): void
     {
         $this->type = $type;
+    }
+
+    public function getRessourceUrl(): ?string
+    {
+        return $this->ressourceUrl;
+    }
+
+    public function setRessourceUrl(?string $ressourceUrl): void
+    {
+        $this->ressourceUrl = $ressourceUrl;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'type' => $this->type,
+            'country' => $this->country,
+            'year' => $this->year,
+            'format' => $this->format,
+            'genre' => $this->genre,
+            'label' => $this->label,
+            'url' => $this->url,
+            'cover' => $this->cover,
+            'ressourceUrl' => $this->ressourceUrl,
+        ];
     }
 
 }

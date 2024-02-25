@@ -37,6 +37,7 @@ class FavoriteService
             $favorite->setCover($data['imageUrl']??'');
             $favorite->setUrl($data['url']??'');
             $favorite->setLabel($data['label']??'');
+            $favorite->setRessourceUrl($data['ressourceUrl']??'');
         }
         else{
             $favorite = $favorites[0];
