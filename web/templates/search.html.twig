@@ -10,7 +10,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
             {% for item in result %}
                 <div class="col">
-                    <article id="{{ item.title}}_{{item.type}}" class="card h-100 pointer card-result" data-resource_url="{{ item.resource_url }}">
+                    <article id="{{ item.title}}_{{item.type}}" class="card h-100 pointer card-result">
                         {% if item.thumb %}
                             <img src="{{ item.cover_image }}" alt="{{ item.title }}" class="card-img-top">
                         {% else %}
@@ -19,7 +19,7 @@
                         <button id="{{ item.title}}_{{item.type}}_button" class="btn" {{ stimulus_controller('favorite')}} data-id="{{ item.title}}_{{item.type}}" data-action="click->favorite#{{ item.isFavorite ? 'removeFromFavorite' : 'addToFavorite'}}" data-addFavoriteRoute="{{ path('add_favorite') }}" data-removeFavoriteRoute="{{ path('remove_favorite') }}">
                             <i class="fa-{{ item.isFavorite ? 'solid' : 'regular'}} fa-star"></i>
                         </button>
-                        <div class="card-body" data-controller="search" data-action="click->search#next">
+                        <div class="card-body" data-controller="search" data-action="click->search#next" data-resource_url="{{ item.resource_url }}">
                             <h3 class="card-title">{{ item.title }}</h3>
                             <h4 class="card-subtitle mb-2 text-body-secondary text-capitalize h6">{{ item.type }}</h4>
                             <section class="card-text">
