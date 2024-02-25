@@ -17,9 +17,9 @@
                     <div class="col">
                         <article id="{{ result.name }}_{{ result.type }}" class="card h-100 pointer card-result">
                             {% if result.cover %}
-                                <img src="{{ result.cover }}" alt="{{ result.name }}" class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}">
+                                <img src="{{ result.cover }}" alt="{{ result.name }}" class="card-img-top">
                             {% else %}
-                                <div class="card-img-top" data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}"></div>
+                                <div class="card-img-top"></div>
                             {% endif %}
                             <div class="card-body">
                                 <h3 class="card-title">{{ result.name }}</h3>
@@ -54,6 +54,11 @@
                                     {% if result.label %}
                                         <p>Label: <span class="label">{{ result.label }}</span></p>
                                     {% endif %}
+
+                                    <button type="button" class="btn btn-secondary detailsButton p-1"
+                                            data-controller="search" data-action="click->search#next" data-resource_url="{{ result.ressourceUrl }}">
+                                        Plus de details
+                                    </button>
                                 </section>
                             </div>
                             <footer class="card-footer">

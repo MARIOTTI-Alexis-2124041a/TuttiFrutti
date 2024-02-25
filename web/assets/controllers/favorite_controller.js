@@ -98,7 +98,7 @@ export default class extends Controller {
         let genre = article.getElementsByClassName("genre")?.[0]?.innerText;
         let label = article.getElementsByClassName("label")?.[0]?.innerText;
         let url = article.getElementsByTagName("a")?.[0]?.href;
-        let ressourceUrl = article.getElementsByClassName("card-img-top")?.[0].getAttribute("data-resource_url");
+        let ressourceUrl = article.getElementsByClassName("detailsButton")?.[0].getAttribute("data-resource_url");
 
         return {
             imageUrl: imageUrl,
