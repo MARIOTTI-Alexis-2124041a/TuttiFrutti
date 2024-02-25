@@ -34,13 +34,21 @@ export default class extends Controller {
         modal.setAttribute('aria-hidden', 'true');
 
         let images = [];
-        result.images.forEach(image => {
-            images.push(`
+        if (result.images != null && result.images.length >= 0) {
+            result.images.forEach(image => {
+                images.push(`
                 <div class="carousel-item">
                     <img src="${image?.resource_url}" class="d-block w-100" alt="image of the song or artist">
                 </div>
                 `)
-        })
+            })
+        } else {
+            images.push(`
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/500" class="d-block w-100" alt="image of the song or artist">
+            </div>
+            `)
+        }
 
         images[0] = images[0]?.replace('carousel-item', 'carousel-item active');
 
@@ -89,17 +97,17 @@ export default class extends Controller {
         } else if (type === 'release') {
             contentModalHTML = `
             <section class="d-flex flex-column w-100">
-                <h1 class="modal-title">${result.title} - ${result.artists.map(artist => artist.name).join(' & ')}</h1>
-                <div class="d-flex flex-column">` + result.tracklist.map(track => `<span><i class="fas fa-music me-2"></i>${track.title} - <i></i>${track.duration}</span>`).join('') + `</div>
+                <h1 class="modal-title">${result.title} - ${result.artists?.map(artist => artist.name).join(' & ')}</h1>
+                <div class="d-flex flex-column">` + result.tracklist?.map(track => `<span><i class="fas fa-music me-2"></i>${track.title} - <i></i>${track.duration}</span>`).join('') + `</div>
             </section>
             <aside class="d-flex flex-column">
                 <h2>Détails</h2>
                 <h3>Sortie</h3>
                 <p>${result?.released_formatted ?? result?.year}</p>
                 <h3>Genres</h3>
-                <p>${result.genres.join(', ')}</p>
+                <p>${result.genres? result.genres.join(', ') : ""}</p>
                 <h3>Styles</h3>
-                <p>${result.styles.join(', ')}</p>
+                <p>${result.styles? result.styles.join(', ') : ""}</p>
             </aside>
             `
         }
